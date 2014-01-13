@@ -61,3 +61,21 @@ projects[date][subdir] = "contrib"
 
 ; Themes
 themes[shiny][subdir] = "contrib"
+
+; Big Data
+
+; Schema.org
+projects[schemaorg][subdir] = "contrib"
+
+; OAI (Open Archives Initiative)
+; producer
+projects[views_oai_pmh][subdir] = "contrib"
+
+; consumer
+projects[feeds_oai_pmh][subdir] = "contrib"
+projects[feeds_oai_pmh][version] = "1.x-dev"
+projects[feeds][subdir] = "contrib"
+
+; RDF
+projects[rdfx][subdir] = "contrib"
+projects[sparql][subdir] = "contrib"
