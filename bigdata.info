@@ -1,0 +1,54 @@
+name = Big Data demo
+description = ""
+core = 7.x
+version = "0.1"
+
+; INSTALL FILES
+files[] = "bigdata.profile"
+
+; Enabled to allow site install to run
+dependencies[] = comment
+
+; core
+dependencies[] = system
+dependencies[] = taxonomy
+dependencies[] = user
+dependencies[] = filter
+dependencies[] = help
+dependencies[] = list
+dependencies[] = menu
+dependencies[] = node
+dependencies[] = path
+
+; admin
+dependencies[] = admin_menu
+dependencies[] = admin_views
+dependencies[] = admin_menu_toolbar
+dependencies[] = views_bulk_operations
+dependencies[] = contextual
+dependencies[] = dashboard
+
+dependencies[] = entity
+dependencies[] = taxonomy_manager
+dependencies[] = views
+dependencies[] = views_ui
+
+; deployment
+dependencies[] = libraries
+dependencies[] = module_filter
+dependencies[] = features
+
+; layout
+dependencies[] = block
+
+; fields
+dependencies[] = field_ui
+dependencies[] = file
+dependencies[] = text
+dependencies[] = image
+dependencies[] = number
+dependencies[] = options
+dependencies[] = date
+dependencies[] = date_api
+dependencies[] = entityreference
+dependencies[] = link
