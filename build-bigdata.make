@@ -5,7 +5,7 @@ core = 7.x
 includes[] = "https://raw2.github.com/Laudanum/bigdata/master/drupal-org-core.make"
 
 ; Download the Big Data install profile
-projects[onprofile][type] = profile
-projects[onprofile][download][type] = git
-projects[onprofile][download][url] = "git@github.com:Laudanum/bigdata.git"
-projects[onprofile][download][branch] = develop
+projects[bigdata][type] = profile
+projects[bigdata][download][type] = git
+projects[bigdata][download][url] = "git@github.com:Laudanum/bigdata.git"
+projects[bigdata][download][branch] = develop
