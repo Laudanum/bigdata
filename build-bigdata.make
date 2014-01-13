@@ -8,4 +8,3 @@ includes[] = "https://raw2.github.com/Laudanum/bigdata/master/drupal-org-core.ma
 projects[bigdata][type] = profile
 projects[bigdata][download][type] = git
 projects[bigdata][download][url] = "git@github.com:Laudanum/bigdata.git"
-projects[bigdata][download][branch] = develop
