@@ -19,6 +19,7 @@ dependencies[] = list
 dependencies[] = menu
 dependencies[] = node
 dependencies[] = path
+dependencies[] = rdf
 
 ; admin
 dependencies[] = admin_menu
