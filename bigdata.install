@@ -16,7 +16,6 @@
 
     //  set default theme and admin theme
     $enable = array(
-      // 'theme_default' => 'zen',
       'admin_theme' => 'shiny',
     );
     theme_enable($enable);
@@ -26,8 +25,4 @@
         variable_set($var, $theme);
       }
     }
-    //  use the admin theme for editing
-    // variable_set('node_admin_theme', 1);
-    //  disable the default theme
-    // theme_disable(array('bartik'));
   }
