@@ -26,6 +26,7 @@ projects[xmlsitemap][subdir] = "contrib"
 projects[google_analytics][subdir] = "contrib"
 projects[advanced_help][subdir] = "contrib"
 
+projects[ctools][subdir] = "contrib"
 projects[views][subdir] = "contrib"
 projects[views_field_view][subdir] = "contrib"
 
