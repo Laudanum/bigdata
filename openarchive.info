@@ -4,7 +4,7 @@ core = 7.x
 version = "0.1"
 
 ; INSTALL FILES
-files[] = "bigdata.profile"
+files[] = "openarchive.profile"
 
 ; Enabled to allow site install to run
 dependencies[] = comment

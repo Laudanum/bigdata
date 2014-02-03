@@ -5,7 +5,7 @@
  *
  * Perform actions to set up the site for this profile.
  */
-  function bigdata_install() {
+  function openarchive_install() {
 
     include_once DRUPAL_ROOT . '/profiles/standard/standard.install';
     standard_install();

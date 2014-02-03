@@ -3,21 +3,21 @@
 # VERBOSE="-v --debug"
 VERBOSE=""
 
-PROFILE=bigdata
+PROFILE=openarchive
 DEST=local
-SITENAME="Big Data ($DEST)"
-TLD=bigdata.example.com
+SITENAME="Open Archive ($DEST)"
+TLD=openarchive.example.com
 DOMAIN=$DEST.$TLD
 SITESUBDIR=$DOMAIN
 
-MAKE="https://raw.github.com/Laudanum/bigdata/master/build-bigdata.make"
+MAKE="https://raw.github.com/Laudanum/openarchive/master/build-openarchive.make"
 
 WWWUSER=rossetti
 
 DBUSER=vagrant
 DBPASS=$DBUSER
 DBHOST=127.0.0.1
-DBNAME=bigdata_example_com_local
+DBNAME=openarchive_example_com_local
 
 ACCOUNTNAME=admin
 ACCOUNTPASS=$ACCOUNTNAME
