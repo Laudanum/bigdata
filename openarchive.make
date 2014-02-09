@@ -26,6 +26,9 @@ projects[xmlsitemap][subdir] = "contrib"
 projects[google_analytics][subdir] = "contrib"
 projects[advanced_help][subdir] = "contrib"
 
+projects[migrate][subdir] = "contrib"
+projects[migrate_d2d][subdir] = "contrib"
+
 projects[ctools][subdir] = "contrib"
 projects[views][subdir] = "contrib"
 projects[views_field_view][subdir] = "contrib"
@@ -76,6 +79,11 @@ projects[views_oai_pmh][subdir] = "contrib"
 projects[feeds_oai_pmh][subdir] = "contrib"
 projects[feeds_oai_pmh][version] = "1.x-dev"
 projects[feeds][subdir] = "contrib"
+
+; Crawling
+projects[querypath][subdir] = "contrib"
+projects[feeds_querypath_parser][subdir] = "contrib"
+projects[feeds_crawler][subdir] = "contrib"
 
 ; RDF
 projects[rdfx][subdir] = "contrib"
