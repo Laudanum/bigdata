@@ -28,6 +28,8 @@ projects[advanced_help][subdir] = "contrib"
 
 projects[migrate][subdir] = "contrib"
 projects[migrate_d2d][subdir] = "contrib"
+; includes wizard
+projects[migrate_d2d][version] = "2.x-dev"
 
 projects[ctools][subdir] = "contrib"
 projects[views][subdir] = "contrib"
@@ -74,11 +76,15 @@ projects[schemaorg][subdir] = "contrib"
 ; OAI (Open Archives Initiative)
 ; producer
 projects[views_oai_pmh][subdir] = "contrib"
+projects[views_oai_pmh][version] = "2.x-dev"
+; prevent body field (and others) from being exploded by commas
+projects[views_oai_pmh][patch][2059007-3] = "https://drupal.org/files/issues/views_oai_pmh.theme_.inc_.patch"
 
 ; consumer
 projects[feeds_oai_pmh][subdir] = "contrib"
 projects[feeds_oai_pmh][version] = "1.x-dev"
 projects[feeds][subdir] = "contrib"
+projects[job_scheduler][subdir] = "contrib"
 
 ; Crawling
 projects[querypath][subdir] = "contrib"
