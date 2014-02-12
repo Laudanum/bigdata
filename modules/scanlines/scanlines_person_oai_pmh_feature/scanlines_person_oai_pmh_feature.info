@@ -1,0 +1,14 @@
+name = Scanlines person OAI-PMH feature
+description = Export People via OAI-PMH
+core = 7.x
+package = Scanlines
+version = 7.x-0.1
+project = scanlines_person_oai_pmh_feature
+dependencies[] = scanlines_person_feature
+dependencies[] = views
+dependencies[] = views_oai_pmh
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = oai_phm
+features_exclude[dependencies][ctools] = ctools
+project path = profiles/openarchive/modules/scanlines/

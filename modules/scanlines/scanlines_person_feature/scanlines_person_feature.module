@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Scanlines person feature feature.
+ */
+
+include_once 'scanlines_person_feature.features.inc';

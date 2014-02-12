@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Scanlines person OAI-PMH feature feature.
+ */
+
+include_once 'scanlines_person_oai_pmh_feature.features.inc';
