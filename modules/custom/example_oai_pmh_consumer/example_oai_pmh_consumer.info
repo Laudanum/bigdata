@@ -1,0 +1,14 @@
+name = Example OAI-PMH consumer
+description = Import records from People Australia using the Open Archive metadata harvesting protocol
+core = 7.x
+package = OpenArchive
+version = 7.x-0.1
+project = example_oai_pmh_consumer
+dependencies[] = ctools
+dependencies[] = features
+dependencies[] = feeds
+features[ctools][] = feeds:feeds_importer_default:1
+features[features_api][] = api:2
+features[feeds_importer][] = example_oai_phm
+features[node][] = oai_repository_dc
+project path = profiles/openarchive/modules/custom

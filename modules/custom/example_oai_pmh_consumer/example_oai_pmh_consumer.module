@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Example OAI-PMH consumer feature.
+ */
+
+include_once 'example_oai_pmh_consumer.features.inc';
