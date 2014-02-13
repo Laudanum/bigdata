@@ -1,0 +1,155 @@
+diff --git a/FeedsOAIHTTPFetcher.inc b/FeedsOAIHTTPFetcher.inc
+index 2679e61..23c55ce 100755
+--- a/FeedsOAIHTTPFetcher.inc
++++ b/FeedsOAIHTTPFetcher.inc
+@@ -10,16 +10,20 @@ class FeedsOAIHTTPFetcherResult extends FeedsFetcherResult {
+   protected $from_timestamp;
+   protected $until_timestamp;
+   public $repository;
++  protected $set;
++  protected $resumption_token;
++  protected $metadata_prefix;
+ 
+   /**
+    * Constructor.
+    */
+-  public function __construct($oai_endpoint_url, $from_timestamp, $until_timestamp, $resumption_token, $set) {
++  public function __construct($oai_endpoint_url, $from_timestamp, $until_timestamp, $resumption_token, $set, $metadata_prefix) {
+     $this->oai_endpoint_url = $oai_endpoint_url;
+     $this->from_timestamp = $from_timestamp;
+     $this->until_timestamp = $until_timestamp;
+     $this->set = $set;
+     $this->resumption_token = $resumption_token;
++    $this->metadata_prefix = $metadata_prefix;
+ 
+     // Run identify request to fill this repository's information.
+     require_once(drupal_get_path('module', 'feeds_oai_pmh') . '/feeds_oai_pmh.inc');
+@@ -43,7 +47,7 @@ class FeedsOAIHTTPFetcherResult extends FeedsFetcherResult {
+     else {
+       // When a resumptionToken is issued, there can't be any other arguments
+       // in the request.
+-      $url .= '&metadataPrefix=oai_dc';
++      $url .= '&metadataPrefix=' . $this->metadata_prefix;
+       if ($this->from_timestamp > 0) {
+         $url .= '&from=' . rawurlencode($this->formatDate($this->from_timestamp));
+       }
+@@ -162,7 +166,8 @@ class FeedsOAIHTTPFetcher extends FeedsHTTPFetcher {
+       $from_timestamp,
+       $until_timestamp,
+       $resumption_token,
+-      $set
++      $set,
++      $this->config['metadata_prefix']
+     );
+   }
+ 
+@@ -179,16 +184,30 @@ class FeedsOAIHTTPFetcher extends FeedsHTTPFetcher {
+       'use_dates' => FALSE,
+       'to' => array(),
+       'from' => array(),
++      'metadata_prefix' => 'oai_dc',
+     );
+ 
+   }
+ 
+   /**
+-   * Add form options.
++   * Override parent::configForm().
++   *
++   * Admin can specify a metadata format to request from the repository.
+    */
+   public function configForm(&$form_state) {
+     $form = array();
+-    // TODO: Specify metadata format here?
++    $form['help'] = array(
++      '#value' => t('Repositories might offer different metadata formats other
++        than the requisite OAI_DC; records might only be available in some
++        formats. To find out the metadata formats available in your OAI
++        repository, issue the ListMetadataFormats verb to the OAI repository.'),
++    );
++    $form['metadata_prefix'] = array(
++      '#type' => 'textfield',
++      '#title' => t('Metadata prefix'),
++      '#default_value' => $this->config['metadata_prefix'],
++      '#description' => t('Specify OAI_DC if you are using the OAI_DC Parser in your feed importer.'),
++     );
+     return $form;
+   }
+ 
+diff --git a/feeds_oai_pmh.inc b/feeds_oai_pmh.inc
+index be8af96..519fa17 100755
+--- a/feeds_oai_pmh.inc
++++ b/feeds_oai_pmh.inc
+@@ -152,6 +152,10 @@ function feeds_oai_pmh_identify($baseurl) {
+       }
+     }
+   }
++  // Get and assign metadata formats information
++  if ($metadata_formats = feeds_oai_pmh_get_metadata_formats($baseurl)) {
++    $repository['metadata_formats'] = $metadata_formats;
++  }
+ 
+   // Get and assign sets information
+   $sets = feeds_oai_pmh_get_sets($baseurl);
+@@ -279,9 +283,11 @@ function feeds_oai_pmh_parse($raw_xml) {
+     }
+ 
+     // Add "url" element from "identifier" items that are URLs.
+-    foreach ($item['identifier'] as $value) {
+-      if (valid_url($value, TRUE)) {
+-        $item['url'][] = $value;
++    if (isset($item['identifier'])) {
++      foreach ($item['identifier'] as $value) {
++        if (valid_url($value, TRUE)) {
++          $item['url'][] = $value;
++        }
+       }
+     }    
+ 
+@@ -318,3 +324,46 @@ function feeds_oai_pmh_parse($raw_xml) {
+     #'resumptionToken' => $resumption_token,
+   );
+ }
++
++/**
++ * Returns an array populated with the avaiable metadata formats reported by an
++ * OAI-PMH endpoint.
++ */
++function feeds_oai_pmh_get_metadata_formats($baseurl) {
++  $formats = array();
++  $url = "$baseurl?verb=ListMetadataFormats";
++  $result = drupal_http_request($url);
++
++  // Return false on error
++  if ($result->code != 200) {
++    return FALSE;
++  }
++  $xml = simplexml_load_string($result->data);
++  // Return false on errors.
++  if (!$xml) {
++    return FALSE;
++  }
++  if (isset($xml->error)) {
++    return FALSE;
++  }
++
++  /**
++   * Sample:
++   *
++   * <ListMetadataFormats>
++   *   <metadataFormat>
++   *     <metadataPrefix>oai_dc</metadataPrefix>
++   *     <schema>http://www.openarchives.org/OAI/2.0/oai_dc.xsd</schema>
++   *     <metadataNamespace>http://www.openarchives.org/OAI/2.0/oai_dc/</metadataNamespace>
++   *   </metadataFormat>
++   *   [...]
++   **/
++  // Put metadata formats into array
++  foreach ($xml->ListMetadataFormats->metadataFormat as $metadataFormat) {
++    $formats[(string)$metadataFormat->metadataPrefix] = array(
++      'schema' => (string)$metadataFormat->schema,
++      'metadataNamespace' => (string)$metadataFormat->metadataNamespace,
++    );
++  }
++  return $formats;
++}
