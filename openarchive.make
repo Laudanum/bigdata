@@ -82,13 +82,16 @@ projects[views_oai_pmh][patch][2059007-3] = "https://drupal.org/files/issues/vie
 
 ; consumer
 projects[feeds_oai_pmh][subdir] = "contrib"
+; git repo seems to be working well
 projects[feeds_oai_pmh][version] = "1.x-dev"
+projects[feeds_oai_pmh][patch][1065452-16] = "https://drupal.org/files/issues/feeds_oai_pmh-1065452-16-d7_0.patch"
 projects[feeds][subdir] = "contrib"
 projects[job_scheduler][subdir] = "contrib"
 
 ; Crawling
 projects[querypath][subdir] = "contrib"
 projects[feeds_querypath_parser][subdir] = "contrib"
+projects[feeds_xpathparser][subdir] = "contrib"
 projects[feeds_crawler][subdir] = "contrib"
 
 ; RDF

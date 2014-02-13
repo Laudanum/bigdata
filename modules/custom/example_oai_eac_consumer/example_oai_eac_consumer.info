@@ -1,0 +1,15 @@
+name = Example OAI EAC consumer
+core = 7.x
+package = OpenArchive
+version = 7.x-0.1
+project = example_oai_eac_consumer
+dependencies[] = ctools
+dependencies[] = features
+dependencies[] = feeds
+dependencies[] = feeds_oai_pmh
+dependencies[] = feeds_xpathparser
+features[ctools][] = feeds:feeds_importer_default:1
+features[features_api][] = api:2
+features[feeds_importer][] = example_oai_phm_eac_cpf
+features[node][] = oai_repository_eac_cpf
+project path = profiles/openarchive/modules/custom
