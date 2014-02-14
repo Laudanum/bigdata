@@ -17,6 +17,13 @@ function example_oai_pmh_consumer_ctools_plugin_api($module = NULL, $api = NULL)
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function example_oai_pmh_consumer_views_api($module = NULL, $api = NULL) {
+  return array("api" => "3.0");
+}
+
+/**
  * Implements hook_node_info().
  */
 function example_oai_pmh_consumer_node_info() {

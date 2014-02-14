@@ -94,6 +94,8 @@ function example_oai_pmh_consumer_feeds_importer_default() {
           'xpathparser:2' => 'metadata/eac-cpf/cpfDescription/identity/nameEntry[1]/part[@localType="forename"][2]/text()',
           'xpathparser:3' => 'string(metadata/eac-cpf/cpfDescription/description/existDates/dateRange/fromDate/@standardDate)',
           'xpathparser:4' => 'metadata/eac-cpf/cpfDescription/alternativeSet/setComponent/objectXMLWrap/eac-cpf/cpfDescription/description/places[1]/place[1]/placeEntry[1]/text()',
+          'xpathparser:5' => 'header/identifier/text()',
+          'xpathparser:6' => '"$field_name:given" "$field_name:family"',
         ),
         'rawXML' => array(
           'xpathparser:0' => 0,
@@ -101,6 +103,8 @@ function example_oai_pmh_consumer_feeds_importer_default() {
           'xpathparser:2' => 0,
           'xpathparser:3' => 0,
           'xpathparser:4' => 0,
+          'xpathparser:5' => 0,
+          'xpathparser:6' => 0,
         ),
         'context' => '/OAI-PMH/ListRecords/record',
         'exp' => array(
@@ -114,6 +118,8 @@ function example_oai_pmh_consumer_feeds_importer_default() {
             'xpathparser:3' => 'xpathparser:3',
             'xpathparser:4' => 'xpathparser:4',
             'context' => 0,
+            'xpathparser:5' => 0,
+            'xpathparser:6' => 0,
           ),
         ),
         'allow_override' => 1,
@@ -149,6 +155,16 @@ function example_oai_pmh_consumer_feeds_importer_default() {
           4 => array(
             'source' => 'xpathparser:4',
             'target' => 'field_birthcountry',
+            'unique' => FALSE,
+          ),
+          5 => array(
+            'source' => 'xpathparser:5',
+            'target' => 'guid',
+            'unique' => 1,
+          ),
+          6 => array(
+            'source' => 'xpathparser:6',
+            'target' => 'title',
             'unique' => FALSE,
           ),
         ),
