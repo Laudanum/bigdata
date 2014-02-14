@@ -329,6 +329,13 @@ function example_oai_pmh_consumer_views_default_views() {
   /* Display: People (DC) */
   $handler = $view->new_display('page', 'People (DC)', 'page_1');
   $handler->display->display_options['path'] = 'admin/content/people-dc';
+  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['menu']['title'] = 'People (DC)';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'main-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $handler->display->display_options['tab_options']['weight'] = '0';
 
   /* Display: People (EAC-CPF) */
   $handler = $view->new_display('page', 'People (EAC-CPF)', 'page_2');
@@ -368,6 +375,12 @@ function example_oai_pmh_consumer_views_default_views() {
     3 => 0,
   );
   $handler->display->display_options['path'] = 'admin/content/people-cpf';
+  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['menu']['title'] = 'People (EAC-CPF)';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'main-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $export['administration_example'] = $view;
 
   return $export;
